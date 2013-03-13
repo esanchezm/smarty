@@ -32,6 +32,8 @@ class Smarty_Internal_Compile_Private_Function_Plugin extends Smarty_Internal_Co
      */
     public $optional_attributes = array('_any');
 
+    public $shorttag_order = array('_any');
+
     /**
      * Compiles code for the execution of function plugin
      *
@@ -55,16 +57,17 @@ class Smarty_Internal_Compile_Private_Function_Plugin extends Smarty_Internal_Co
         unset($_attr['nocache']);
         // convert attributes into parameter array string
         $_paramsArray = array();
+        $_plainParams = array();
         foreach ($_attr as $_key => $_value) {
             if (is_int($_key)) {
-                $_paramsArray[] = "$_key=>$_value";
+                $_plainParams[] = $_value;
             } else {
                 $_paramsArray[] = "'$_key'=>$_value";
             }
         }
         $_params = 'array(' . implode(",", $_paramsArray) . ')';
         // compile code
-        $output = "<?php echo {$function}({$_params},\$_smarty_tpl);?>\n";
+        $output = "<?php echo {$function}(".(empty ($_plainParams) ? '' : implode (', ', $_plainParams).', ')."{$_params},\$_smarty_tpl);?>\n";
         return $output;
     }
 

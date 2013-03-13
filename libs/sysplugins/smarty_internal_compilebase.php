@@ -66,6 +66,8 @@ abstract class Smarty_Internal_CompileBase {
                     // shorthand attribute ?
                 } else if (isset($this->shorttag_order[$key])) {
                     $_indexed_attr[$this->shorttag_order[$key]] = $mixed;
+                } else if ($this->shorttag_order[0] == '_any') {
+                    $_indexed_attr[$key] = $mixed;
                 } else {
                     // too many shorthands
                     $compiler->trigger_template_error('too many shorthand attributes', $compiler->lex->taglineno);
