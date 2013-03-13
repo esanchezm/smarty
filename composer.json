@@ -1,0 +1,17 @@
+{
+    "name": "esanchezm/smarty",
+    "type": "library",
+    "description": "Smarty Template Engine",
+    "keywords": ["smarty", "php", "template", "templating", "engine"],
+    "homepage": "http://www.smarty.net",
+    "license": "LGPL",
+    "require": {
+        "php": ">=5.2.0"
+    },
+    "autoload": {
+        "classmap": [
+            "libs/Smarty.class.php", 
+            "libs/SmartyBC.class.php"
+        ]
+    }
+}
